@@ -24,6 +24,11 @@ public class Main {
                     Flight flight = fc.createFlight();
                     flights.add(flight);
                     break;
+
+                case 3:
+                    for(Flight f : flights){
+                        System.out.println("Flight Number: "+);
+                    }
                 case -1:
                     break;
             }
