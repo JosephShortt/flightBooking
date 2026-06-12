@@ -1,16 +1,20 @@
+import java.util.List;
+
 public class Flight {
     private String flightCode;
     private String departingAirport;
     private String destinationAirport;
     private int passengerCapacity;
     private Pilot pilot;
+    private static int flightCount = 1;
 
-    public Flight(String flightCode, String departingAirport, String destinationAirport, int passengerCapacity, Pilot pilot){
-        this.flightCode = flightCode;
+    public Flight(String departingAirport, String destinationAirport, int passengerCapacity, Pilot pilot){
         this.departingAirport = departingAirport;
         this.destinationAirport = destinationAirport;
         this.passengerCapacity = passengerCapacity;
         this.pilot=pilot;
+        this.flightCode = "FL%04d".formatted(flightCount++);
+
     }
 
     public String getFlightCode() {

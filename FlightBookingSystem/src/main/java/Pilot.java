@@ -1,19 +1,21 @@
+import java.util.UUID;
+
 public class Pilot {
-    private String pilotID;
+    private UUID pilotID;
     private String name;
     private double flightTime;
 
-    public Pilot(String pilotID, String name, double flightTime){
-        this.pilotID = pilotID;
+    public Pilot(String name, double flightTime){
+        this.pilotID = UUID.randomUUID();
         this.name=name;
         this.flightTime=flightTime;
     }
 
-    public String getPilotID() {
+    public UUID getPilotID() {
         return pilotID;
     }
 
-    public void setPilotID(String pilotID) {
+    public void setPilotID(UUID pilotID) {
         this.pilotID = pilotID;
     }
 

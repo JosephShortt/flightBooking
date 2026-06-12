@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        FlightService flightService = new FlightServiceImpl();
         Scanner sc = new Scanner(System.in);
         List<Flight> flights = new ArrayList<>();
+
         int choice;
         do{
             System.out.println("FLIGHT BOOKING SYSTEM");
@@ -20,14 +22,13 @@ public class Main {
                 case 1:
                     break;
                 case 2:
-                    FlightCreation fc = new FlightCreation();
-                    Flight flight = fc.createFlight();
+                    Flight flight = flightService.createFlight();
                     flights.add(flight);
                     break;
 
                 case 3:
                     for(Flight f : flights){
-                        System.out.println("Flight Number: "+);
+                        flightService.display(f);
                     }
                 case -1:
                     break;
