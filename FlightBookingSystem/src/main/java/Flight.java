@@ -7,6 +7,7 @@ public class Flight {
     private int passengerCapacity;
     private Pilot pilot;
     private static int flightCount = 1;
+    private int remainingCapacity = passengerCapacity;
 
     public Flight(String departingAirport, String destinationAirport, int passengerCapacity, Pilot pilot){
         this.departingAirport = departingAirport;
@@ -14,7 +15,23 @@ public class Flight {
         this.passengerCapacity = passengerCapacity;
         this.pilot=pilot;
         this.flightCode = "FL%04d".formatted(flightCount++);
+        this.remainingCapacity = passengerCapacity;
+    }
 
+    public int getRemainingCapacity() {
+        return remainingCapacity;
+    }
+
+    public void setRemainingCapacity(int remainingCapacity) {
+        this.remainingCapacity = remainingCapacity;
+    }
+
+    public static int getFlightCount() {
+        return flightCount;
+    }
+
+    public static void setFlightCount(int flightCount) {
+        Flight.flightCount = flightCount;
     }
 
     public String getFlightCode() {

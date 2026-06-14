@@ -1,8 +1,11 @@
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class FlightServiceImpl implements FlightService{
     @Override
     public void display(Flight flight) {
+        System.out.println("\n\n");
         System.out.println("Flight Code: "+flight.getFlightCode());
         System.out.println("Departing Airport: "+flight.getDepartingAirport());
         System.out.println("Arrival Airport: "+flight.getDestinationAirport());
@@ -11,6 +14,8 @@ public class FlightServiceImpl implements FlightService{
         System.out.println("Pilot ID: "+flight.getPilot().getPilotID().toString());
         System.out.println("Pilot Name: "+flight.getPilot().getName());
         System.out.println("Flight Hours: "+flight.getPilot().getFlightTime());
+        System.out.println("Remaining Capacity: "+flight.getRemainingCapacity());
+
     }
 
     @Override
@@ -47,4 +52,25 @@ public class FlightServiceImpl implements FlightService{
 
         return new Flight(departing,destination,capacity,pilot);
     }
+
+    @Override
+    public void displayAvailableFlights(List<Flight> flights) {
+        System.out.println("Available Flights:");
+        for (Flight f : flights){
+            String code = f.getFlightCode();
+            System.out.println(code+": remaining capacity: "+f.getRemainingCapacity());
+        }
+    }
+
+    @Override
+    public Flight getFlight(String code, List<Flight> flights) {
+        for (Flight f : flights){
+            String fCode = f.getFlightCode();
+            if(code.equals(fCode)){
+                return f;
+            }
+        }
+        return null;
+    }
+
 }
