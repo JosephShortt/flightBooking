@@ -57,8 +57,11 @@ public class FlightServiceImpl implements FlightService{
     public void displayAvailableFlights(List<Flight> flights) {
         System.out.println("Available Flights:");
         for (Flight f : flights){
-            String code = f.getFlightCode();
-            System.out.println(code+": remaining capacity: "+f.getRemainingCapacity());
+            if(f.getRemainingCapacity()>0){
+                String code = f.getFlightCode();
+                System.out.println(code+": remaining capacity: "+f.getRemainingCapacity());
+            }
+
         }
     }
 
