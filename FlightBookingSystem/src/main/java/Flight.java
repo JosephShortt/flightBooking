@@ -8,14 +8,33 @@ public class Flight {
     private Pilot pilot;
     private static int flightCount = 1;
     private int remainingCapacity = passengerCapacity;
+    private double price;
+    private static List<Passenger> passengers;
 
-    public Flight(String departingAirport, String destinationAirport, int passengerCapacity, Pilot pilot){
+    public Flight(String departingAirport, String destinationAirport, int passengerCapacity, Pilot pilot, double price){
         this.departingAirport = departingAirport;
         this.destinationAirport = destinationAirport;
         this.passengerCapacity = passengerCapacity;
         this.pilot=pilot;
         this.flightCode = "FL%04d".formatted(flightCount++);
         this.remainingCapacity = passengerCapacity;
+        this.price=price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 
     public int getRemainingCapacity() {

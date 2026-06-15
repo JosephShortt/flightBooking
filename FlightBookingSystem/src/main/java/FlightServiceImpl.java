@@ -7,6 +7,7 @@ public class FlightServiceImpl implements FlightService{
     public void display(Flight flight) {
         System.out.println("\n\n");
         System.out.println("Flight Code: "+flight.getFlightCode());
+        System.out.println("Price: €"+flight.getPrice());
         System.out.println("Departing Airport: "+flight.getDepartingAirport());
         System.out.println("Arrival Airport: "+flight.getDestinationAirport());
         System.out.println("Passenger Capacity: "+flight.getPassengerCapacity());
@@ -26,6 +27,7 @@ public class FlightServiceImpl implements FlightService{
         int capacity;
         String pilotName;
         double flightTime;
+        double price;
 
         System.out.println("**Flight Creation**");
         System.out.println("Enter the following flight details:");
@@ -35,6 +37,9 @@ public class FlightServiceImpl implements FlightService{
 
         System.out.println("Destination Airport:");
         destination=sc.nextLine();
+
+        System.out.println("Enter Price of flight:");
+        price = sc.nextDouble();
 
         System.out.println("Passeneger Capacity:");
         capacity = sc.nextInt();
@@ -47,10 +52,11 @@ public class FlightServiceImpl implements FlightService{
         System.out.println("Pilot Flight Time: ");
         flightTime = sc.nextDouble();
 
+
         System.out.println("Flight Created Successfully!");
         Pilot pilot = new Pilot(pilotName,flightTime);
 
-        return new Flight(departing,destination,capacity,pilot);
+        return new Flight(departing,destination,capacity,pilot, price);
     }
 
     @Override
