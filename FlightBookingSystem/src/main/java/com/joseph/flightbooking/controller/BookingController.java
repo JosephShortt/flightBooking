@@ -1,12 +1,13 @@
 package com.joseph.flightbooking.controller;
 
-import com.joseph.flightbooking.dto.BookPassengerRequest;
+import com.joseph.flightbooking.dto.MyBookingResponse;
 import com.joseph.flightbooking.model.Flight;
 import com.joseph.flightbooking.service.BookingService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/flights")
 public class BookingController {
 
     private final BookingService bookingService;
@@ -15,8 +16,13 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @PostMapping("/{code}/book")
-    public Flight bookFlight(@PathVariable String code, @RequestBody BookPassengerRequest request) {
-        return bookingService.book(code, request);
+    @PostMapping("/api/flights/{code}/book")
+    public Flight bookFlight(@PathVariable String code) {
+        return bookingService.book(code);
+    }
+
+    @GetMapping("/api/bookings/me")
+    public List<MyBookingResponse> getMyBookings() {
+        return bookingService.getMyBookings();
     }
 }

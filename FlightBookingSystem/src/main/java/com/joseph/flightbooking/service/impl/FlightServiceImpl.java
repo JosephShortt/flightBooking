@@ -39,7 +39,8 @@ public class FlightServiceImpl implements FlightService {
                 request.destinationAirport(),
                 request.passengerCapacity(),
                 pilot,
-                request.price()
+                request.price(),
+                request.departureDateTime()
         );
         Flight saved = flightRepository.save(flight);
         saved.setFlightCode("FL%04d".formatted(saved.getId()));

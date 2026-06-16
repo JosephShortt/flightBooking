@@ -1,6 +1,7 @@
 package com.joseph.flightbooking.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.util.UUID;
 
@@ -17,14 +18,18 @@ public class Passenger {
 
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"passengers"})
     private Flight flight;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Passenger() {}
 
-    public Passenger(String name, String address, String phone) {
+    public Passenger(String name, String phone) {
         this.name = name;
-        this.address = address;
         this.phone = phone;
     }
 
@@ -42,4 +47,7 @@ public class Passenger {
 
     public Flight getFlight() { return flight; }
     public void setFlight(Flight flight) { this.flight = flight; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

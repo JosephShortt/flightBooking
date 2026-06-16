@@ -94,3 +94,29 @@
 .btnSecondary:hover {
   background: #d1d5db;
 }
+
+.confirmDetails {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.confirmDetails div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.confirmDetails span {
+  color: #6b7280;
+}
+
+.confirmNote {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}

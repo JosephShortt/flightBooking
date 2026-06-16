@@ -9,6 +9,7 @@ const EMPTY = {
   passengerCapacity: '',
   pilotName: '',
   pilotFlightTime: '',
+  departureDateTime: '',
 }
 
 export default function CreateFlightModal({ onClose, onCreated, onError }) {
@@ -28,6 +29,7 @@ export default function CreateFlightModal({ onClose, onCreated, onError }) {
         passengerCapacity: parseInt(form.passengerCapacity),
         pilotName: form.pilotName,
         pilotFlightTime: parseFloat(form.pilotFlightTime),
+        departureDateTime: form.departureDateTime || null,
       })
       onCreated()
     } catch (err) {
@@ -71,6 +73,10 @@ export default function CreateFlightModal({ onClose, onCreated, onError }) {
               <label>Pilot Flight Hours</label>
               <input type="number" step="0.1" value={form.pilotFlightTime} onChange={set('pilotFlightTime')} placeholder="5000" required />
             </div>
+          </div>
+          <div className={styles.field}>
+            <label>Departure Date & Time</label>
+            <input type="datetime-local" value={form.departureDateTime} onChange={set('departureDateTime')} required />
           </div>
           <div className={styles.footer}>
             <button type="button" className={styles.btnSecondary} onClick={onClose}>Cancel</button>

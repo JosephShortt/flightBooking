@@ -1,5 +1,10 @@
 import styles from './FlightTable.module.css'
 
+function formatDate(dt) {
+  if (!dt) return '—'
+  return new Date(dt).toLocaleString('en-IE', { dateStyle: 'short', timeStyle: 'short' })
+}
+
 export default function FlightTable({ flights, onBook, onDelete }) {
   if (flights.length === 0) {
     return (
@@ -17,11 +22,11 @@ export default function FlightTable({ flights, onBook, onDelete }) {
           <th>Code</th>
           <th>From</th>
           <th>To</th>
+          <th>Departure</th>
           <th>Price</th>
           <th>Pilot</th>
           <th>Capacity</th>
           <th>Availability</th>
-          <th>Booked</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -47,6 +52,7 @@ function FlightRow({ flight, onBook, onDelete }) {
       <td><strong>{flight.flightCode}</strong></td>
       <td>{flight.departingAirport}</td>
       <td>{flight.destinationAirport}</td>
+      <td>{formatDate(flight.departureDateTime)}</td>
       <td>€{flight.price.toFixed(2)}</td>
       <td>{flight.pilot.name} ({flight.pilot.flightTime}h)</td>
       <td>{flight.passengerCapacity}</td>
@@ -55,7 +61,6 @@ function FlightRow({ flight, onBook, onDelete }) {
           {full ? 'Full' : `${flight.remainingCapacity} seats`}
         </span>
       </td>
-      <td>{flight.passengers.length}</td>
       <td>
         <div className={styles.actions}>
           <button
