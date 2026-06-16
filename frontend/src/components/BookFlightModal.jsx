@@ -31,6 +31,7 @@ export default function BookFlightModal({ flight, onClose, onBooked, onError }) 
         </p>
         <div className={styles.confirmDetails}>
           <div><span>Departure</span><strong>{formatDate(flight.departureDateTime)}</strong></div>
+          <div><span>Arrival</span><strong>{formatDate(flight.arrivalDateTime)}</strong></div>
           <div><span>Price</span><strong>€{flight.price.toFixed(2)}</strong></div>
           <div><span>Seats left</span><strong>{flight.remainingCapacity}</strong></div>
         </div>

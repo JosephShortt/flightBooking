@@ -55,13 +55,17 @@ public class DataSeeder implements ApplicationRunner {
                     .withSecond(0)
                     .withNano(0);
 
+            // Flight duration between 1 and 14 hours
+            LocalDateTime arrival = departure.plusHours(1 + rng.nextInt(14))
+                    .withMinute(rng.nextBoolean() ? 0 : 30);
+
             double price = Math.round((49 + rng.nextDouble() * 751) * 100.0) / 100.0;
             int capacity = 80 + rng.nextInt(171);
             String pilotName = PILOT_NAMES[rng.nextInt(PILOT_NAMES.length)];
             double flightHours = 1000 + Math.round(rng.nextDouble() * 9000);
 
             Pilot pilot = new Pilot(pilotName, flightHours);
-            flights.add(new Flight(AIRPORTS[fromIdx], AIRPORTS[toIdx], capacity, pilot, price, departure));
+            flights.add(new Flight(AIRPORTS[fromIdx], AIRPORTS[toIdx], capacity, pilot, price, departure, arrival));
         }
 
         List<Flight> saved = flightRepository.saveAll(flights);

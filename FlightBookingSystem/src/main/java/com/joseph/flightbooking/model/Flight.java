@@ -20,6 +20,7 @@ public class Flight {
     private int remainingCapacity;
     private double price;
     private LocalDateTime departureDateTime;
+    private LocalDateTime arrivalDateTime;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pilot_id")
@@ -32,7 +33,7 @@ public class Flight {
     public Flight() {}
 
     public Flight(String departingAirport, String destinationAirport, int passengerCapacity,
-                  Pilot pilot, double price, LocalDateTime departureDateTime) {
+                  Pilot pilot, double price, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime) {
         this.departingAirport = departingAirport;
         this.destinationAirport = destinationAirport;
         this.passengerCapacity = passengerCapacity;
@@ -40,6 +41,7 @@ public class Flight {
         this.pilot = pilot;
         this.price = price;
         this.departureDateTime = departureDateTime;
+        this.arrivalDateTime = arrivalDateTime;
     }
 
     public Long getId() { return id; }
@@ -68,6 +70,9 @@ public class Flight {
 
     public LocalDateTime getDepartureDateTime() { return departureDateTime; }
     public void setDepartureDateTime(LocalDateTime departureDateTime) { this.departureDateTime = departureDateTime; }
+
+    public LocalDateTime getArrivalDateTime() { return arrivalDateTime; }
+    public void setArrivalDateTime(LocalDateTime arrivalDateTime) { this.arrivalDateTime = arrivalDateTime; }
 
     public List<Passenger> getPassengers() { return passengers; }
     public void setPassengers(List<Passenger> passengers) { this.passengers = passengers; }

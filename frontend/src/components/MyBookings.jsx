@@ -53,6 +53,7 @@ export default function MyBookings() {
           <th>From</th>
           <th>To</th>
           <th>Departure</th>
+          <th>Arrival</th>
           <th>Price</th>
           <th>Status</th>
           <th></th>
@@ -65,6 +66,7 @@ export default function MyBookings() {
             <td>{b.departingAirport}</td>
             <td>{b.destinationAirport}</td>
             <td>{formatDate(b.departureDateTime)}</td>
+            <td>{formatDate(b.arrivalDateTime)}</td>
             <td>€{b.price.toFixed(2)}</td>
             <td><span className={styles.badge}>Confirmed</span></td>
             <td>

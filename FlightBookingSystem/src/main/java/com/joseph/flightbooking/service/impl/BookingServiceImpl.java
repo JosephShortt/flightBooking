@@ -66,6 +66,7 @@ public class BookingServiceImpl implements BookingService {
                         p.getFlight().getDepartingAirport(),
                         p.getFlight().getDestinationAirport(),
                         p.getFlight().getDepartureDateTime(),
+                        p.getFlight().getArrivalDateTime(),
                         p.getFlight().getPrice()
                 ))
                 .toList();

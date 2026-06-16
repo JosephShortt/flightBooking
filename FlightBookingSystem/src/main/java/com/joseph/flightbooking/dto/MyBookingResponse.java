@@ -9,5 +9,6 @@ public record MyBookingResponse(
         String departingAirport,
         String destinationAirport,
         LocalDateTime departureDateTime,
+        LocalDateTime arrivalDateTime,
         double price
 ) {}

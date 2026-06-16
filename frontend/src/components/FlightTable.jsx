@@ -23,6 +23,7 @@ export default function FlightTable({ flights, onBook, onDelete }) {
           <th>From</th>
           <th>To</th>
           <th>Departure</th>
+          <th>Arrival</th>
           <th>Price</th>
           <th>Pilot</th>
           <th>Capacity</th>
@@ -53,6 +54,7 @@ function FlightRow({ flight, onBook, onDelete }) {
       <td>{flight.departingAirport}</td>
       <td>{flight.destinationAirport}</td>
       <td>{formatDate(flight.departureDateTime)}</td>
+      <td>{formatDate(flight.arrivalDateTime)}</td>
       <td>€{flight.price.toFixed(2)}</td>
       <td>{flight.pilot.name} ({flight.pilot.flightTime}h)</td>
       <td>{flight.passengerCapacity}</td>
