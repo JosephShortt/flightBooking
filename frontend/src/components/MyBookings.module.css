@@ -61,3 +61,14 @@
   color: #6b7280;
   padding: 1rem 0;
 }
+
+.btnCancel {
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.75rem;
+}
+
+.btnCancel:hover:not(:disabled) {
+  background: #fecaca;
+}

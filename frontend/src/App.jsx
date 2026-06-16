@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { getFlights, deleteFlight } from './services/api'
 import { isLoggedIn, getUser, clearAuth } from './services/authService'
 import FlightTable from './components/FlightTable'
-import CreateFlightModal from './components/CreateFlightModal'
 import BookFlightModal from './components/BookFlightModal'
 import MyBookings from './components/MyBookings'
 import AuthModal from './components/AuthModal'
@@ -13,7 +12,6 @@ export default function App() {
   const [user, setUser] = useState(() => isLoggedIn() ? getUser() : null)
   const [tab, setTab] = useState('flights')
   const [flights, setFlights] = useState([])
-  const [showCreateModal, setShowCreateModal] = useState(false)
   const [flightToBook, setFlightToBook] = useState(null)
   const [toast, setToast] = useState(null)
 
@@ -50,12 +48,6 @@ export default function App() {
     } catch {
       showToast('Failed to delete flight.', 'error')
     }
-  }
-
-  const handleFlightCreated = () => {
-    setShowCreateModal(false)
-    showToast('Flight created successfully!')
-    loadFlights()
   }
 
   const handleBooked = (flightCode) => {
@@ -98,9 +90,6 @@ export default function App() {
           <>
             <div className={styles.toolbar}>
               <h2>Available Flights</h2>
-              <button className={styles.btnPrimary} onClick={() => setShowCreateModal(true)}>
-                + Create Flight
-              </button>
             </div>
             <FlightTable flights={flights} onBook={setFlightToBook} onDelete={handleDelete} />
           </>
@@ -115,14 +104,6 @@ export default function App() {
           </>
         )}
       </main>
-
-      {showCreateModal && (
-        <CreateFlightModal
-          onClose={() => setShowCreateModal(false)}
-          onCreated={handleFlightCreated}
-          onError={(msg) => showToast(msg, 'error')}
-        />
-      )}
 
       {flightToBook && (
         <BookFlightModal

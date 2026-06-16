@@ -53,3 +53,11 @@ export async function getMyBookings() {
   if (!res.ok) throw new Error('Failed to fetch bookings')
   return res.json()
 }
+
+export async function cancelBooking(bookingId) {
+  const res = await fetch(`${BASE}/bookings/${bookingId}`, {
+    method: 'DELETE',
+    headers: authHeaders(),
+  })
+  if (!res.ok) throw new Error('Failed to cancel booking')
+}

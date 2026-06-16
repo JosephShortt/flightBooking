@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -68,5 +69,22 @@ public class BookingServiceImpl implements BookingService {
                         p.getFlight().getPrice()
                 ))
                 .toList();
+    }
+
+    @Override
+    public void cancelBooking(UUID bookingId) {
+        User currentUser = userService.getCurrentUser();
+        Passenger passenger = passengerRepository.findById(bookingId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found"));
+
+        if (!passenger.getUser().getId().equals(currentUser.getId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Not your booking");
+        }
+
+        Flight flight = passenger.getFlight();
+        flight.getPassengers().remove(passenger);
+        flight.setRemainingCapacity(flight.getRemainingCapacity() + 1);
+        flightRepository.save(flight);
+        passengerRepository.delete(passenger);
     }
 }
