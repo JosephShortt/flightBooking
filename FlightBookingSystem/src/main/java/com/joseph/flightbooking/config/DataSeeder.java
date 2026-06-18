@@ -2,9 +2,12 @@ package com.joseph.flightbooking.config;
 
 import com.joseph.flightbooking.model.Flight;
 import com.joseph.flightbooking.model.Pilot;
+import com.joseph.flightbooking.model.User;
 import com.joseph.flightbooking.repository.FlightRepository;
+import com.joseph.flightbooking.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -31,13 +34,23 @@ public class DataSeeder implements ApplicationRunner {
     };
 
     private final FlightRepository flightRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DataSeeder(FlightRepository flightRepository) {
+    public DataSeeder(FlightRepository flightRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.flightRepository = flightRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void run(ApplicationArguments args) {
+        if (!userRepository.existsByEmail("admin@flightbooking.com")) {
+            User admin = new User("Admin", "admin@flightbooking.com",
+                    passwordEncoder.encode("admin123"), "000-000-0000", "ADMIN");
+            userRepository.save(admin);
+        }
+
         if (flightRepository.count() > 0) return;
 
         Random rng = new Random();
